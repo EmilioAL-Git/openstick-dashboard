@@ -1,0 +1,2 @@
+#!/bin/sh
+echo '[{"ifname":"lo","operstate":"UNKNOWN","addr_info":[{"local":"127.0.0.1","prefixlen":8}]},{"ifname":"wlan0","operstate":"UP","addr_info":[{"local":"192.168.0.23","prefixlen":24}]}]'

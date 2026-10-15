@@ -1,0 +1,14 @@
+#!/bin/sh
+# simulador mínimo de nmcli
+args="$*"
+case "$args" in
+  *"con show --active"*) printf 'CASA-WIFI:802-11-wireless:wlan0\nbr0:bridge:br0\ntailscale0:tun:tailscale0\n';;
+  *"NAME,TYPE,AUTOCONNECT"*) printf 'CASA-WIFI:802-11-wireless:yes\nhotspot:802-11-wireless:yes\nbr0:bridge:yes\nlte:gsm:yes\n';;
+  *"NAME,TYPE con show"*) printf 'CASA-WIFI:802-11-wireless\nhotspot:802-11-wireless\nbr0:bridge\nlte:gsm\n';;
+  *"IN-USE,SSID,SIGNAL,CHAN,SECURITY"*) printf '*:CASA-WIFI:97:2:WPA2\n :VECINO-WIFI:59:3:WPA2\n :Mi\\:Red con dos puntos:40:6:WPA2\n :Abierta:30:1:\n';;
+  *"IN-USE,SSID,SIGNAL,CHAN"*) printf '*:CASA-WIFI:97:2\n';;
+  *"IP4.ADDRESS"*) echo "192.168.0.23/24";;
+  *"gsm.apn,gsm.username"*) printf 'gsm.apn:internet\ngsm.username:\n';;
+  *"wifi connect"*) echo "FAKE connect: $args" >> /tmp/osp_calls.log; case "$args" in *MALA*) echo "Error: Secrets were required" >&2; exit 4;; esac; echo ok;;
+  *) echo "FAKE nmcli $args" >> /tmp/osp_calls.log; exit 0;;
+esac

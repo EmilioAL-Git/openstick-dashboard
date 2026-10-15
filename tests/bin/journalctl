@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "oct 14 21:00:00 openstick fake[1]: linea de registro de $2 $3"

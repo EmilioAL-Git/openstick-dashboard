@@ -1,0 +1,2 @@
+#!/bin/sh
+case "$1" in is-active) echo inactive;; is-enabled) echo disabled;; *) echo "FAKE systemctl $*" >> /tmp/osp_calls.log;; esac
